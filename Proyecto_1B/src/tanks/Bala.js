@@ -14,6 +14,8 @@ class Bala extends Phaser.Physics.Arcade.Sprite {
     this.setActive(true);
     this.setVisible(true);
     this.setPosition(x, y);
+    this.setVelocity(0, 0);
+    this.setScale(2);
 
     this.scene.physics.velocityFromRotation(angulo, 300, this.body.velocity);
 

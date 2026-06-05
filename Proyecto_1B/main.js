@@ -23,37 +23,6 @@ class Teletransportador extends Phaser.Physics.Arcade.Sprite {
   }
 }
 
-class TanqueAzul extends TanqueBase {
-  constructor(scene, x, y, texture) {
-    super(scene, x, y, texture);
-
-    this.setMaxVelocity(250);
-    this.setDrag(200);
-    this.velocidadRotacion = 300;
-    this.aceleracion = 150;
-
-    this.tiempoHabilidad = 0;
-    this.esInvulnerable = false;
-
-    scene.input.keyboard.on("keydown-E", this.activarDash, this);
-  }
-
-  activarDash() {
-    if (this.scene.time.now > this.tiempoHabilidad) {
-      this.esInvulnerable = true;
-      this.scene.physics.velocityFromRotation(
-        this.rotation,
-        600,
-        this.body.velocity,
-      );
-      this.scene.time.delayedCall(300, () => {
-        this.esInvulnerable = false;
-      });
-      this.tiempoHabilidad = this.scene.time.now + 3000;
-    }
-  }
-}
-
 /* ESCENA NIVEL 2 */
 
 class Level2 extends Phaser.Scene {
@@ -292,11 +261,11 @@ class UIScene extends Phaser.Scene {
   create() {
     this.registry.set("puntuacion", 0);
 
-    this.textoPuntuacion = this.add.text(20, 20, "PUNTOS: 0", {
-      fontSize: "24px",
-      fill: "#ffffff",
-      fontFamily: "monospace",
-    });
+    // this.textoPuntuacion = this.add.text(20, 20, "PUNTOS: 0", {
+    //   fontSize: "24px",
+    //   fill: "#ffffff",
+    //   fontFamily: "monospace",
+    // });
 
     this.registry.events.on("changedata-puntuacion", (parent, valor) => {
       this.textoPuntuacion.setText("PUNTOS: " + valor);
